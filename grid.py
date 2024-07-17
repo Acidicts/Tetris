@@ -15,6 +15,11 @@ class Grid:
             for column in range(self.num_cols):
                 print(self.grid[row][column], end=" ")
 
+    def is_inside(self, row, column):
+        if 0 <= row < self.num_rows and 0 <= column < 10:
+            return True
+        return False
+
     def draw(self, win):
         for row in range(self.num_rows):
             for column in range(self.num_cols):

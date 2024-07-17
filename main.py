@@ -1,6 +1,7 @@
 import pygame
 from grid import Grid
-from blocks import LBlock
+from blocks import *
+from game import Game
 
 pygame.init()
 
@@ -11,7 +12,7 @@ pygame.display.set_caption("Tetris")
 
 clock = pygame.time.Clock()
 
-game_grid = Grid()
+game = Game()
 
 while True:
     for event in pygame.event.get():
@@ -19,10 +20,18 @@ while True:
             pygame.quit()
             quit()
 
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                game.move_left()
+            if event.key == pygame.K_RIGHT:
+                game.move_right()
+            if event.key == pygame.K_UP:
+                game.rotate_block()
+            if event.key == pygame.K_DOWN:
+                game.move_block_down()
+
     win.fill(dark_blue)
-    game_grid.draw(win)
-
-
+    game.draw(win)
 
     pygame.display.update()
     clock.tick(60)
